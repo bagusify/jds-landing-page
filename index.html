@@ -692,6 +692,103 @@
             }
             .guarantee-strip b { color: #B45309; text-transform: uppercase; letter-spacing: 1px; }
         }
+      
+      /* === 14. MOBILE UX OPTIMIZATION === */
+        
+        /* A. Sticky Bottom Action Bar (Hanya Mobile) */
+        .mobile-action-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+            z-index: 1000;
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .action-btn {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            border: 1px solid #E5E7EB;
+        }
+
+        .action-btn.wa {
+            background: #25D366;
+            color: var(--white);
+            border-color: #25D366;
+        }
+
+        .action-btn.primary {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        /* Aturan Khusus Layar HP */
+        @media (max-width: 768px) {
+            /* Tampilkan Action Bar, Sembunyikan WA Float biasa */
+            .mobile-action-bar { display: flex; }
+            .wa-float { display: none; }
+            
+            /* Beri jarak di bawah body agar konten tidak tertutup Action Bar */
+            body { padding-bottom: 70px; }
+
+            /* 1. Ubah Grid menjadi Flexbox untuk baris horizontal */
+    .p-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory; /* Efek magnet saat geser */
+        gap: 20px;
+        padding: 20px; /* Memberi ruang agar kartu tidak nempel ke pinggir */
+        -webkit-overflow-scrolling: touch; /* Scroll halus di iOS */
+        scrollbar-width: none; /* Sembunyikan scrollbar di Firefox */
+    }
+
+    /* Sembunyikan scrollbar di Chrome/Safari */
+    .p-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* 2. Atur ukuran kartu agar pas di layar HP */
+    .p-card {
+        min-width: 280px; /* Lebar minimal kartu */
+        width: 85%; /* Menampilkan sedikit bagian kartu berikutnya (pemicu visual) */
+        flex-shrink: 0;
+        scroll-snap-align: center; /* Kartu akan otomatis berhenti di tengah */
+        margin: 0 !important; /* Reset margin/transform desktop */
+        transform: none !important; 
+    }
+
+    /* 3. Sesuaikan tinggi kartu agar seragam saat di-swipe */
+    .p-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* 4. Indikator Visual (Opsional): Tambahkan teks kecil di atas grid */
+    .pricing .section-title::after {
+        content: "← Geser untuk lihat paket lain →";
+        display: block;
+        font-size: 12px;
+        color: var(--text-light);
+        margin-top: 10px;
+        font-weight: 400;
+    }
+        }
     </style>
 </head>
 <body>
@@ -1032,13 +1129,24 @@
 
             <div class="footer-bottom">
                 &copy; 2026 LKP JDS (Jogja Driving School). All Rights Reserved. <br>
-                <span style="font-size: 12px; opacity: 0.7;">Redesigned for better user experience.</span>
+                <span style="font-size: 12px; opacity: 0.7;">Redesigned for better user experience. @bagusify</span>
             </div>
         </div>
     </footer>
     <a href="https://wa.me/6281234567890" class="float-wa" aria-label="Chat WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
+    <div class="mobile-action-bar">
+        <a href="tel:081234567890" class="action-btn">
+            <i class="fa-solid fa-phone"></i> Telepon
+        </a>
+        <a href="https://wa.me/6281234567890" class="action-btn wa">
+            <i class="fa-brands fa-whatsapp"></i> Tanya WA
+        </a>
+        <a href="daftar.html" class="action-btn primary">
+            Daftar <i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i>
+        </a>
+    </div>
 
   <script>
     const hamburger = document.getElementById('hamburger');

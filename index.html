@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKP JDS - Kursus Mengemudi Resmi di Jogja</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+       /* === 7. PRICING SECTION === */
+        .pricing {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            transition: var(--transition);
+            border: 1px solid #E5E7EB;
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--secondary-color);
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .pricing-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .price {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .price span {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--text-light);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-features li i {
+            color: #10B981;
+        }
+
+        /* === 8. LOCATIONS SECTION === */
+        .locations {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .location-item {
+            padding: 20px;
+            border-radius: 10px;
+            background: var(--bg-light);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .location-item:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .location-item i {
+            font-size: 24px;
+            color: var(--secondary-color);
+        }
+
+        .location-item h4 {
+            font-size: 18px;
+        }
+
+        .location-item p {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .btn-maps {
+            margin-top: auto;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+ /* === 1. DESIGN TOKENS (CSS VARIABLES) === */
+        :root {
+            --primary-color: #1E3A8A; /* Navy Blue - Kepercayaan */
+            --secondary-color: #F59E0B; /* Kuning Otomotif - Aksi/Energi */
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --bg-light: #F9FAFB;
+            --white: #FFFFFF;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* === 2. RESET & BASE STYLES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #D97706;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        /* === 3. HEADER / NAVBAR === */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* === 4. HERO SECTION === */
+        .hero {
+            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.8)), url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* === 5. FEATURES / WHY US === */
+        .features {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 12px;
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 4px solid var(--secondary-color);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* === 6. FLOATING WHATSAPP === */
+        .float-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .float-wa:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 768px) {
+            .nav-links, .nav-btn {
+                display: none; /* Disembunyikan di mobile, nanti ditambahkan Hamburger Menu */
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .hero-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+/* === 9. TESTIMONIALS SECTION === */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .stars {
+            color: #FBBF24;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .quote {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .student-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .student-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #E5E7EB;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .student-details h4 {
+            font-size: 16px;
+            color: var(--text-dark);
+            margin-bottom: 2px;
+        }
+
+        .student-details p {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* === 10. FAQ SECTION === */
+        .faq {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-item details {
+            width: 100%;
+        }
+
+        .faq-item summary {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--bg-light);
+            transition: var(--transition);
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none; /* Hide default arrow in webkit */
+        }
+
+        .faq-item summary:after {
+            content: "\f078"; /* FontAwesome Chevron Down */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            transition: var(--transition);
+        }
+
+        .faq-item details[open] summary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .faq-item details[open] summary:after {
+            transform: rotate(180deg);
+            color: var(--white);
+        }
+
+        .faq-content {
+            padding: 20px;
+            color: var(--text-light);
+            font-size: 15px;
+            border-top: 1px solid #E5E7EB;
+        }
+
+        /* === 11. FOOTER === */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about p {
+            color: #D1D5DB;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3, .footer-contact h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--white);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3::after, .footer-contact h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #D1D5DB;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .footer-contact li {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: #D1D5DB;
+            font-size: 14px;
+        }
+
+        .footer-contact i {
+            color: var(--secondary-color);
+            font-size: 18px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #9CA3AF;
+        }
+/* === 12. RESPONSIVE & MOBILE MENU === */
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-only-btn {
+            display: none;
+        }
+
+        /* Aturan khusus untuk layar Mobile (Maks 768px) */
+        @media (max-width: 768px) {
+            /* Navbar & Hamburger */
+            .hamburger {
+                display: block;
+            }
+
+            .desktop-btn {
+                display: none;
+            }
+
+            .mobile-only-btn {
+                display: block;
+                margin-top: 15px;
+            }
+
+            /* Off-Canvas Menu */
+            .nav-links {
+                display: flex; /* <-- KUNCI PERBAIKANNYA DI SINI */
+                position: fixed;
+                top: 80px; 
+                right: -100%; 
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 40px;
+                gap: 25px;
+                transition: right 0.4s ease-in-out;
+                box-shadow: -5px 10px 15px rgba(0,0,0,0.05);
+                z-index: 99;
+            }
+
+            .nav-links.active {
+                right: 0; /* Tarik menu ke dalam layar */
+            }
+
+            .nav-links a {
+                font-size: 18px;
+            }
+
+            /* Perbaikan Grid & Teks untuk Mobile */
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            /* Ubah semua grid menjadi 1 kolom di HP */
+            .features-grid, .pricing-grid, .testimonial-grid {
+                grid-template-columns: 1fr; 
+            }
+
+            /* Hapus efek scale agar kartu tidak terpotong di layar kecil */
+            .pricing-card.popular {
+                transform: scale(1); 
+            }
+            
+            /* Penyesuaian Footer agar rapi di tengah */
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-icons, .footer-contact li {
+                justify-content: center;
+            }
+
+            .footer-links h3::after, .footer-contact h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .guarantee-strip {
+                background-color: #FEF3C7;
+                border-bottom: 1px solid #FDE68A;
+                padding: 15px 0;
+                color: #92400E;
+                font-size: 14px;
+                text-align: center;
+            }
+            .guarantee-strip b { color: #B45309; text-transform: uppercase; letter-spacing: 1px; }
+        }
+    </style>
+</head>
+<body>
+
+   <header>
+        <div class="container navbar">
+            <div class="logo">
+                <i class="fa-solid fa-car-side"></i> LKP JDS
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#">Beranda</a></li>
+                <li><a href="#paket">Paket Kursus</a></li>
+                <li><a href="#kurikulum">Kurikulum</a></li>
+                <li><a href="#cabang">Cabang</a></li>
+                <li class="mobile-only-btn">
+                    <a href="https://wa.me/6281234567890" class="btn btn-primary">Daftar Sekarang</a>
+                </li>
+            </ul>
+
+            <a href="https://wa.me/6281234567890" class="btn btn-primary desktop-btn">Daftar Sekarang</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Mahir Mengemudi & Paham Mesin, Bergaransi 100%!</h1>
+            <p>Lembaga resmi di Jogja dengan jadwal paling fleksibel—<b>Buka Kelas Malam & Hari Minggu</b>. Kami bimbing sampai lulus dan bantu proses SIM Online Anda!</p>
+            
+            <div class="badge" style="background: rgba(245, 158, 11, 0.2); border: 1px solid var(--secondary-color); margin-top: 20px; display: inline-flex;">
+                <i class="fa-solid fa-shield-halved" style="color: var(--secondary-color);"></i> 
+                Jaminan Kecewa? GRATIS Belajar Sampai Mahir!
+            </div>
+          
+            <div style="margin-top: 30px;">
+                <a href="https://wa.me/6281234567890" class="btn btn-primary" style="margin-right: 15px;">Mulai Kursus <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#paket" class="btn btn-outline">Lihat Paket</a>
+            </div>
+
+            <div class="hero-badges">
+                <div class="badge"><i class="fa-solid fa-check-circle" style="color: #10B981;"></i> Izin Resmi: 486/kpts/2018</div>
+                <div class="badge"><i class="fa-solid fa-award" style="color: #F59E0B;"></i> Standar SKKNI</div>
+                <div class="badge"><i class="fa-solid fa-map-location-dot" style="color: #3B82F6;"></i> 5 Cabang di Jogja</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mengapa Memilih LKP JDS?</h2>
+                <p>Kami memberikan layanan yang tidak hanya mengajarkan cara menyetir, tapi cara berkendara yang aman dan beretika.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fa-solid fa-moon feature-icon"></i>
+                    <h3>Kelas Malam & Minggu</h3>
+                    <p>Tetap bisa latihan meski sibuk kerja atau kuliah. Kami satu-satunya yang konsisten buka hingga malam dan hari Minggu.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fa-solid fa-gears feature-icon"></i>
+                    <h3>Edukasi Mesin Dasar</h3>
+                    <p>Bukan sekadar setir! Kami ajarkan cara ganti ban, cek oli, dan air radiator agar Anda tidak panik saat di jalan.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-id-card feature-icon"></i>
+                    <h3>Instruktur Tersertifikasi</h3>
+                    <p>Dibimbing oleh instruktur sabar, ramah, dan telah lulus uji kompetensi resmi.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-car feature-icon"></i>
+                    <h3>Armada Terawat</h3>
+                    <p>Mobil manual dan matic generasi terbaru dengan kondisi prima dan full AC.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-clock feature-icon"></i>
+                    <h3>Jadwal Fleksibel</h3>
+                    <p>Pilih jadwal latihan yang sesuai dengan kesibukan Anda, pagi hingga sore.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-certificate feature-icon"></i>
+                    <h3>Sertifikat Resmi</h3>
+                    <p>Dapatkan e-sertifikat resmi sebagai bukti kompetensi mengemudi Anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <section class="pricing" id="paket">
+        <div class="container">
+            <div class="section-title">
+                <h2>Paket Kursus Terpopuler</h2>
+                <p>Pilih paket yang paling sesuai dengan kebutuhan belajar Anda.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Paket Manual (Basic)</h3>
+                    <div class="price">Rp 550rb <span>/ 6 Jam</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-circle-check"></i> 3 Sesi Latihan (2 Jam/Sesi)</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Dasar Stir & Parkir</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Antar Jemput Gratis*</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Mobil New Avanza/Xenia</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Bantuan Proses SIM A Online</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline" style="color: var(--primary-color); border-color: var(--primary-color); width: 100%;">Pilih Paket</a>
+                </div>
+
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Paling Laris</div>
+                    <h3>Paket Mahir (Manual)</h3>
+                    <div class="price">Rp 1.2jt <span>/ 15 Jam</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-circle-check"></i> 7 Sesi + 1 Sesi Evaluasi</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Tanjakan, Kota & Parkir Mall</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Free E-Sertifikat Resmi</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Tips Perawatan Mesin</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Pendampingan Ujian SIM</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Bantuan Proses SIM A Online</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Daftar Sekarang</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Paket Matic (Executive)</h3>
+                    <div class="price">Rp 850rb <span>/ 8 Jam</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-circle-check"></i> 4 Sesi Latihan</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Khusus Mobil Matic (Brio/Agya)</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Fokus Blindspot & Parkir</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Instruktur Senior</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Bantuan Proses SIM A Online</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline" style="color: var(--primary-color); border-color: var(--primary-color); width: 100%;">Pilih Paket</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="locations" id="cabang">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cabang & Wilayah Layanan</h2>
+                <p>Kami hadir lebih dekat dengan Anda di 5 lokasi strategis di Yogyakarta.</p>
+            </div>
+
+            <div class="location-grid">
+                <div class="location-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h4>Cabang Jakal</h4>
+                    <p>Jl. Kaliurang KM 10, Sleman, DIY. Melayani area UGM, UNY, dan sekitarnya.</p>
+                    <a href="#" class="btn-maps">Lihat di Google Maps</a>
+                </div>
+                <div class="location-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h4>Cabang Kasihan</h4>
+                    <p>Area Bantul utara. Melayani wilayah UMY, Alma Ata, dan sekitarnya.</p>
+                    <a href="#" class="btn-maps">Lihat di Google Maps</a>
+                </div>
+                <div class="location-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h4>Cabang Prambanan</h4>
+                    <p>Jl. Raya Jogja-Solo. Melayani area Prambanan, Kalasan, hingga Klaten.</p>
+                    <a href="#" class="btn-maps">Lihat di Google Maps</a>
+                </div>
+                <div class="location-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h4>Cabang Triharjo</h4>
+                    <p>Pusat kota Sleman. Melayani area Pemda Sleman dan sekitarnya.</p>
+                    <a href="#" class="btn-maps">Lihat di Google Maps</a>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+  <section class="testimonials" id="testimoni">
+        <div class="container">
+            <div class="section-title">
+                <h2>Apa Kata Lulusan Kami?</h2>
+                <p>Lebih dari 10.000+ siswa telah berhasil mengemudi dengan aman bersama LKP JDS.</p>
+            </div>
+
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="quote">"Instrukturnya sangat sabar, padahal saya awalnya penakut banget pegang setir. Sekarang sudah berani bawa mobil sendiri dari Jakal sampai Malioboro. Terima kasih JDS!"</p>
+                    <div class="student-info">
+                        <div class="student-avatar">A</div>
+                        <div class="student-details">
+                            <h4>Andini Putri</h4>
+                            <p>Mahasiswi UGM - Ambil Paket Mahir</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="quote">"Fasilitas mobilnya baru-baru dan full AC jadi nyaman. Paling suka karena diajarin cara parkir mundur di mall yang awalnya selalu bikin saya panik."</p>
+                    <div class="student-info">
+                        <div class="student-avatar">B</div>
+                        <div class="student-details">
+                            <h4>Budi Santoso</h4>
+                            <p>Karyawan Swasta - Paket Executive Matic</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="quote">"Daftarnya gampang via WA, jadwal bisa disesuaikan sama shift kerja saya. Sertifikatnya juga berguna banget buat pelengkap bikin SIM A. Recommended!"</p>
+                    <div class="student-info">
+                        <div class="student-avatar">R</div>
+                        <div class="student-details">
+                            <h4>Rina Wulandari</h4>
+                            <p>Ibu Rumah Tangga - Paket Basic Manual</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pertanyaan yang Sering Diajukan</h2>
+                <p>Temukan jawaban atas pertanyaan umum seputar kursus mengemudi di JDS.</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <details>
+                        <summary>Apakah saya akan dibantu dalam pembuatan SIM A?</summary>
+                        <div class="faq-content">
+                            Ya, LKP JDS menyediakan pendampingan dan kemudahan kolektif untuk proses pembuatan SIM A setelah Anda dinyatakan lulus ujian praktik dari instruktur kami, sesuai dengan ketentuan pihak kepolisian.
+                        </div>
+                    </details>
+                </div>
+
+                <div class="faq-item">
+                    <details>
+                        <summary>Bagaimana jika terjadi kerusakan/kecelakaan saat latihan?</summary>
+                        <div class="faq-content">
+                            Anda tidak perlu khawatir. Semua mobil operasional JDS dilengkapi dengan sistem *double brake* (rem ganda) untuk instruktur, dan sudah dicover oleh asuransi penuh. Keamanan Anda adalah prioritas utama kami.
+                        </div>
+                    </details>
+                </div>
+
+                <div class="faq-item">
+                    <details>
+                        <summary>Apakah jadwal latihan bisa diatur sendiri?</summary>
+                        <div class="faq-content">
+                            Tentu bisa! Jadwal latihan di JDS sangat fleksibel. Anda bisa berdiskusi dengan admin saat pendaftaran untuk menyesuaikan jadwal latihan dengan waktu luang Anda, termasuk akhir pekan (Syarat dan ketentuan berlaku untuk kuota instruktur).
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="faq-item">
+                    <details>
+                        <summary>Bisakah belajar menggunakan mobil pribadi?</summary>
+                        <div class="faq-content">
+                            Bisa, namun kami menyarankan untuk menggunakan mobil JDS terlebih dahulu di beberapa pertemuan awal demi keamanan (karena fitur rem ganda). Setelah dirasa lancar, Anda bisa request untuk didampingi menggunakan mobil pribadi Anda.
+                        </div>
+                    </details>
+                </div>
+                <div class="faq-item">
+                    <details>
+                        <summary>Bisakah saya latihan menggunakan mobil pribadi?</summary>
+                        <div class="faq-content">
+                            Sangat bisa! Setelah Anda menguasai dasar di mobil JDS, instruktur kami siap mendampingi Anda menggunakan mobil pribadi agar Anda lebih terbiasa dengan karakter mobil sendiri di rumah.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h2 class="logo" style="color: var(--white);"><i class="fa-solid fa-car-side" style="color: var(--secondary-color);"></i> LKP JDS</h2>
+                    <p>Lembaga Kursus dan Pelatihan Mengemudi terpercaya di Yogyakarta sejak 2010. Mencetak pengemudi yang tidak hanya mahir, tapi juga beretika di jalan raya.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Menu Cepat</h3>
+                    <ul>
+                        <li><a href="#paket">Paket & Harga</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                        <li><a href="#">Kode Etik Instruktur</a></li>
+                        <li><a href="#">Cek E-Sertifikat</a></li>
+                        <li><a href="#">Artikel Tips Berkendara</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Hubungi Kami</h3>
+                    <ul>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Jl. Kaliurang KM 10, Sleman, Daerah Istimewa Yogyakarta</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <span>+62 812-3456-7890 (Admin Jakal)</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>info@kursusmengemudijogja.com</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Buka Setiap Hari: 08.00 - 17.00 WIB</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                &copy; 2026 LKP JDS (Jogja Driving School). All Rights Reserved. <br>
+                <span style="font-size: 12px; opacity: 0.7;">Redesigned for better user experience.</span>
+            </div>
+        </div>
+    </footer>
+    <a href="https://wa.me/6281234567890" class="float-wa" aria-label="Chat WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        // Fungsi buka/tutup menu saat hamburger diklik
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Animasi ganti icon dari Bars ke X
+            const icon = hamburger.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Fungsi tutup menu otomatis saat salah satu link diklik
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = hamburger.querySelector('i');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
+  </script>
+
+</body>
+</html>

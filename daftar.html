@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran - LKP JDS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1E3A8A; 
+            --secondary: #F59E0B; 
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --bg-light: #F3F4F6;
+            --white: #FFFFFF;
+            --border: #E5E7EB;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-dark); display: flex; min-height: 100vh; }
+
+        /* SPLIT SCREEN LAYOUT */
+        .split-layout { display: flex; width: 100%; }
+        
+        /* LEFT PANEL - INFO */
+        .info-panel {
+            flex: 0.8;
+            background: linear-gradient(135deg, var(--primary), #1e293b);
+            color: var(--white);
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-panel h1 { font-size: 36px; margin-bottom: 20px; }
+        .info-panel p { opacity: 0.9; margin-bottom: 40px; font-size: 16px; line-height: 1.6; }
+        
+        .trust-list { list-style: none; margin-bottom: 40px; }
+        .trust-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 15px; font-size: 15px; }
+        .trust-list i { color: var(--secondary); font-size: 20px; }
+
+        .guarantee-box {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        /* RIGHT PANEL - FORM */
+        .form-panel {
+            flex: 1.2;
+            background: var(--white);
+            padding: 60px 80px;
+            overflow-y: auto;
+        }
+
+        .back-link { display: inline-block; margin-bottom: 30px; color: var(--text-light); text-decoration: none; font-weight: 500; transition: var(--transition); }
+        .back-link:hover { color: var(--primary); }
+
+        .form-title { font-size: 28px; margin-bottom: 10px; color: var(--primary); }
+        .form-subtitle { color: var(--text-light); margin-bottom: 40px; font-size: 15px; }
+
+        .form-group { margin-bottom: 25px; }
+        .form-label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+        .form-control {
+            width: 100%; padding: 14px 16px; border: 1.5px solid var(--border);
+            border-radius: 8px; font-size: 15px; transition: var(--transition); background: var(--bg-light);
+        }
+        .form-control:focus { outline: none; border-color: var(--primary); background: var(--white); }
+
+        /* VISUAL SELECTORS (Radio Cards) */
+        .radio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .radio-card { position: relative; }
+        .radio-card input { position: absolute; opacity: 0; cursor: pointer; }
+        .card-content {
+            border: 2px solid var(--border); border-radius: 10px; padding: 15px;
+            cursor: pointer; transition: var(--transition); display: flex; flex-direction: column; gap: 5px;
+        }
+        .card-content strong { color: var(--primary); font-size: 15px; }
+        .card-content span { font-size: 12px; color: var(--text-light); }
+        
+        /* State saat dipilih */
+        .radio-card input:checked + .card-content {
+            border-color: var(--secondary);
+            background: rgba(245, 158, 11, 0.05);
+        }
+        .radio-card input:checked + .card-content::after {
+            content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            position: absolute; top: 15px; right: 15px; color: var(--secondary);
+        }
+
+        /* BUTTONS */
+        .btn-group { display: flex; flex-direction: column; gap: 15px; margin-top: 40px; }
+        .btn { width: 100%; padding: 16px; border-radius: 8px; font-weight: 600; border: none; cursor: pointer; font-size: 16px; transition: var(--transition); display: flex; justify-content: center; align-items: center; gap: 10px; }
+        
+        .btn-submit { background: var(--primary); color: var(--white); }
+        .btn-submit:hover { background: #152c6b; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2); }
+        
+        .btn-wa { background: #25D366; color: var(--white); text-decoration: none; }
+        .btn-wa:hover { background: #1EBE55; transform: translateY(-2px); }
+
+        .divider { text-align: center; color: var(--text-light); font-size: 14px; position: relative; margin: 20px 0; }
+        .divider::before, .divider::after { content: ''; position: absolute; top: 50%; width: 40%; height: 1px; background: var(--border); }
+        .divider::before { left: 0; }
+        .divider::after { right: 0; }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .split-layout { flex-direction: column; }
+            .info-panel { padding: 40px 20px; }
+            .form-panel { padding: 40px 20px; }
+        }
+        @media (max-width: 480px) {
+            .radio-grid { grid-template-columns: 1fr; } /* Stack cards on very small screens */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="split-layout">
+        
+        <div class="info-panel">
+            <div style="font-size: 24px; font-weight: 700; margin-bottom: 40px; color: var(--secondary);">
+                <i class="fa-solid fa-car-side"></i> LKP JDS
+            </div>
+            <h1>Langkah Awal Menuju Mahir Mengemudi.</h1>
+            <p>Isi formulir di samping untuk mengamankan kursi Anda. Jadwal fleksibel, instruktur sabar, dan mobil nyaman menanti Anda.</p>
+            
+            <ul class="trust-list">
+                <li><i class="fa-solid fa-shield-halved"></i> Izin Resmi: 486/kpts/2018</li>
+                <li><i class="fa-solid fa-clock"></i> Bebas Pilih Jadwal (Termasuk Malam/Minggu)</li>
+                <li><i class="fa-solid fa-id-card"></i> Dibantu Proses SIM A Online</li>
+            </ul>
+
+            <div class="guarantee-box">
+                <strong style="color: var(--secondary);">Garansi 100%</strong><br>
+                Jika Anda merasa kecewa dengan pelayanan instruktur kami, Anda berhak belajar ulang secara GRATIS sampai mahir.
+            </div>
+        </div>
+
+        <div class="form-panel">
+            <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a>
+            
+            <h2 class="form-title">Formulir Pendaftaran</h2>
+            <p class="form-subtitle">Data Anda aman dan hanya digunakan untuk keperluan administrasi kursus.</p>
+
+            <form action="#" method="POST" id="regForm">
+                
+                <div class="form-group">
+                    <label class="form-label">Nama Lengkap</label>
+                    <input type="text" class="form-control" placeholder="Sesuai KTP" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Nomor WhatsApp Aktif</label>
+                    <input type="tel" class="form-control" placeholder="Contoh: 081234567890" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Pilih Cabang Terdekat</label>
+                    <div class="radio-grid">
+                        <label class="radio-card">
+                            <input type="radio" name="cabang" value="jakal" checked>
+                            <div class="card-content">
+                                <strong>Cabang Jakal</strong>
+                                <span>Area Sleman, UGM, UNY</span>
+                            </div>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="cabang" value="kasihan">
+                            <div class="card-content">
+                                <strong>Cabang Kasihan</strong>
+                                <span>Area Bantul, UMY</span>
+                            </div>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="cabang" value="prambanan">
+                            <div class="card-content">
+                                <strong>Cabang Prambanan</strong>
+                                <span>Area Jogja Timur, Klaten</span>
+                            </div>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="cabang" value="triharjo">
+                            <div class="card-content">
+                                <strong>Cabang Triharjo</strong>
+                                <span>Area Sleman Kota</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Pilih Paket Kursus</label>
+                    <div class="radio-grid">
+                        <label class="radio-card">
+                            <input type="radio" name="paket" value="manual-basic">
+                            <div class="card-content">
+                                <strong>Manual Basic (6 Jam)</strong>
+                                <span>Rp 550.000</span>
+                            </div>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="paket" value="manual-mahir" checked>
+                            <div class="card-content">
+                                <strong>Manual Mahir (15 Jam)</strong>
+                                <span>Rp 1.200.000 - Best Seller</span>
+                            </div>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="paket" value="matic">
+                            <div class="card-content">
+                                <strong>Executive Matic (8 Jam)</strong>
+                                <span>Rp 850.000</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Preferensi Jadwal Latihan (Opsional)</label>
+                    <select class="form-control">
+                        <option value="">Pilih Rencana Jadwal...</option>
+                        <option value="pagi">Pagi Hari (08.00 - 12.00)</option>
+                        <option value="siang">Siang/Sore (13.00 - 17.00)</option>
+                        <option value="malam">Kelas Malam (Setelah 18.00)</option>
+                        <option value="weekend">Hanya Sabtu / Minggu</option>
+                    </select>
+                </div>
+
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-submit">
+                        <i class="fa-solid fa-paper-plane"></i> Kirim Pendaftaran via Website
+                    </button>
+                    
+                    <div class="divider">ATAU</div>
+                    
+                    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20JDS,%20saya%20ingin%20mendaftar%20kursus%20mengemudi." class="btn btn-wa">
+                        <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i> Isi Form via WhatsApp
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

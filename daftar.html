@@ -117,6 +117,75 @@
         @media (max-width: 480px) {
             .radio-grid { grid-template-columns: 1fr; } /* Stack cards on very small screens */
         }
+        /* Efek Scroll Halus */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Update Layout untuk Mobile */
+        @media (max-width: 992px) {
+            .split-layout {
+                flex-direction: column;
+            }
+
+            .info-panel {
+                min-height: 100vh; /* Panel info jadi layar penuh di HP */
+                padding: 40px 20px;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+
+            .form-panel {
+                padding: 60px 20px;
+                min-height: 100vh;
+            }
+
+            /* Sembunyikan Trust List di Mobile agar tidak terlalu panjang, 
+               fokus ke Headline dan Guarantee */
+            .trust-list {
+                display: none;
+            }
+        }
+
+        /* TOMBOL SCROLL DOWN (PARALLAX STYLE) */
+        .scroll-down-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            font-size: 24px;
+            display: none; /* Sembunyi di desktop */
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-down-btn span {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 992px) {
+            .scroll-down-btn {
+                display: flex; /* Muncul hanya di mobile */
+            }
+        }
+
+        /* Animasi Bouncing */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-10px);}
+            60% {transform: translateX(-50%) translateY(-5px);}
+        }
     </style>
 </head>
 <body>
@@ -124,11 +193,11 @@
     <div class="split-layout">
         
         <div class="info-panel">
-            <div style="font-size: 24px; font-weight: 700; margin-bottom: 40px; color: var(--secondary);">
+            <div style="font-size: 24px; font-weight: 700; margin-bottom: 20px; color: var(--secondary);">
                 <i class="fa-solid fa-car-side"></i> LKP JDS
             </div>
             <h1>Langkah Awal Menuju Mahir Mengemudi.</h1>
-            <p>Isi formulir di samping untuk mengamankan kursi Anda. Jadwal fleksibel, instruktur sabar, dan mobil nyaman menanti Anda.</p>
+            <p>Isi formulir untuk mengamankan kursi Anda. Jadwal fleksibel, instruktur sabar, dan mobil nyaman menanti Anda.</p>
             
             <ul class="trust-list">
                 <li><i class="fa-solid fa-shield-halved"></i> Izin Resmi: 486/kpts/2018</li>
@@ -138,11 +207,16 @@
 
             <div class="guarantee-box">
                 <strong style="color: var(--secondary);">Garansi 100%</strong><br>
-                Jika Anda merasa kecewa dengan pelayanan instruktur kami, Anda berhak belajar ulang secara GRATIS sampai mahir.
+                Kecewa dengan pelayanan kami? GRATIS belajar sampai mahir.
             </div>
+
+            <a href="#pendaftaran" class="scroll-down-btn">
+                <span>Daftar Sekarang</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </a>
         </div>
 
-        <div class="form-panel">
+        <div class="form-panel" id="pendaftaran">
             <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a>
             
             <h2 class="form-title">Formulir Pendaftaran</h2>
